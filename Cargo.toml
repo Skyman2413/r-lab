@@ -1,0 +1,9 @@
+[workspace]
+members = [
+    "crates/rlab-core",
+    "crates/rlab-db",
+    "crates/rlab-git",
+    "crates/rlab-web",
+    # "crates/rlab-cli",
+]
+resolver = "2"
