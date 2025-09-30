@@ -3,4 +3,8 @@ name = "rlab-git"
 version = "0.1.0"
 edition = "2024"
 
+[lib]
+name = "rlab_git"
+path = "src/lib.rs"
+
 [dependencies]

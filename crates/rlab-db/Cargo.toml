@@ -3,4 +3,12 @@ name = "rlab-db"
 version = "0.1.0"
 edition = "2024"
 
+[lib]
+name = "rlab_db"
+path="src/lib.rs"
+
 [dependencies]
+sqlx = { version = "0.8.6", features = ["runtime-tokio-rustls", "postgres", "uuid", "chrono"] }
+rlab-core = {path= "../rlab-core"}
+thiserror = "2.0.17"
+
