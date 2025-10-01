@@ -8,3 +8,7 @@ name = "rlab_git"
 path = "src/lib.rs"
 
 [dependencies]
+git2 = "0.20.2"
+thiserror = "2.0.17"
+tokio = "1.47.1"
+rlab-core = { path = "../rlab-core"}

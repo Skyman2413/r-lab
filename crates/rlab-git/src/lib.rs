@@ -1,3 +1,4 @@
-mod storage;
-mod service;
-mod protocol;
+pub mod storage;
+pub mod service;
+pub mod protocol;
+pub mod errors;

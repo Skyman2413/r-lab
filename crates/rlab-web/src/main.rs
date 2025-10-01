@@ -1,22 +1,15 @@
-use rlab_db::models::NewUser;
-use rlab_db::pool::create_pool;
-use rlab_db::repositories::user::DbUserRepository;
-
+use rlab_git::service::GitService;
+use rlab_git::storage::GitStorage;
+use std::path::PathBuf;
 
 #[tokio::main]
 async fn main() {
-    // TODO take from ENV
-    let pool =
-        create_pool("postgresql://r-lab:2413@localhost:5432/r-lab").await.unwrap();
+    let storage = GitStorage::new(PathBuf::from(
+        "/home/skyman/rust-project/r-lab/test/".to_string(),
+    ));
+    let service = GitService::new(storage);
 
-    let userRepo = DbUserRepository::new(pool);
-    let _ = userRepo.create(
-        &NewUser {
-            name: "Noob".to_string(),
-            email: "itsme@rust.rs".to_string(),
-        }
-    ).await;
-    let noob_user = userRepo.find_by_email("itsme@rust.rs").await.unwrap();
-    println!("{:?}", noob_user);
+    let refs = service.advertise_refs("noob", "test").await.unwrap();
 
+    println!("Refs: {:?}", String::from_utf8_lossy(&refs));
 }
